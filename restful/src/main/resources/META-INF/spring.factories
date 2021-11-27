@@ -1,0 +1,1 @@
+org.springframework.boot.autoconfiguration.EnableAutoconfiguration=com.longpengz.rest.RestfulAutoConfiguration
