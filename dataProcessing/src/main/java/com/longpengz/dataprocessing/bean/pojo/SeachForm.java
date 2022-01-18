@@ -1,5 +1,6 @@
 package com.longpengz.dataprocessing.bean.pojo;
 
+import com.github.pagehelper.PageHelper;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -39,5 +40,9 @@ public class SeachForm {
 
     public PageRequest  pageRequest(){
         return PageRequest.of(pageNum , pageSize, Sort.by(Sort.Direction.DESC,"createTime"));
+    }
+
+    public void pageHelperStartPage(){
+        PageHelper.startPage(pageNum + 1,pageSize);
     }
 }

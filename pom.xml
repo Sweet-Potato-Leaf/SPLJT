@@ -14,6 +14,7 @@
         <module>cache</module>
         <module>dataProcessing</module>
         <module>utils</module>
+        <module>oss</module>
     </modules>
 
 

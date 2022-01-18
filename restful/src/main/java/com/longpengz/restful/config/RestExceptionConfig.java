@@ -33,7 +33,7 @@ public class RestExceptionConfig {
     public API<Object> illegalParamsExceptionHandler(MethodArgumentNotValidException ex) {
         BindingResult bindingResult = ex.getBindingResult();
         FieldError fieldError = bindingResult.getFieldError();
-        return API.e(400, !ObjectUtils.isEmpty(fieldError)? fieldError.getField():"" +" invalid");
+        return API.e(400, !ObjectUtils.isEmpty(fieldError)? fieldError.getDefaultMessage():"");
 
     }
 
