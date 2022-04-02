@@ -1,15 +1,29 @@
 package com.longpengz.restful.bean;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+/**
+ * @author longpengZ
+ */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@ApiModel(description = "API错误信息")
 public class APIError implements Serializable {
 
+    @ApiModelProperty("信息补充说明")
     private String msg;
 
+    @ApiModelProperty("状态码")
     private Integer code;
 
     public static void e(String msg){
@@ -35,6 +49,8 @@ public class APIError implements Serializable {
         APIError error = new APIError();
         error.setCode(code);
         error.setMsg(msg);
-        throw new APIException(error);
+        throw new APIException(APIError.builder()
+                .code(code)
+                .msg(msg).build());
     }
 }

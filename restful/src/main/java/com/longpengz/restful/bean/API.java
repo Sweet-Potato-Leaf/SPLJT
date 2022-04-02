@@ -1,70 +1,49 @@
 package com.longpengz.restful.bean;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.function.BiFunction;
-
+/**
+ * @author longpengZ
+ */
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class API<T> {
 
+    @ApiModelProperty("状态码")
     private Integer code;
+    @ApiModelProperty("数据")
     private T data;
+    @ApiModelProperty("信息补充说明")
     private String msg;
 
-    @JsonIgnore
-    private Class<?> beanClazz;
-
-
-    public static BiFunction<Object, Class<?>, Map<String, Object>> metaInfoProcessor = null;
-
-
-    private Map<String, Object> metaInfo = new HashMap<>();
-
-
-    public static <T> API<T> ok(T t) {
-        return ok(t, null);
+    public static <T> API<T> ok(T data) {
+        return ok(200,"成功", data);
     }
 
-    public static <T> API<T> ok(T t, Class<?> clazz) {
-        API<T> data = new API<T>();
-        data.setData(t);
-        data.setCode(200);
-        data.setMsg("success");
-        data.setBeanClazz(clazz);
-        if (metaInfoProcessor != null) {
-            try {
-                data.setMetaInfo(metaInfoProcessor.apply(data.getData(), data.getBeanClazz()));
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return data;
-    }
 
     public static API<Object> e(Integer code, String msg) {
-        API<Object> api = new API<>();
-        api.setMsg(msg);
-        api.setCode(code);
-        return api;
+        return API.<Object>builder()
+                .code(code)
+                .msg(msg).build();
     }
 
-    public static API<Object> ok(Integer code, String msg, String data) {
-        API<Object> api = new API<>();
-        api.setMsg(msg);
-        api.setCode(code);
-        api.setData(data);
-        return api;
+    public static <T> API<T> ok(Integer code, String msg, T data) {
+        return API.<T>builder()
+                .data(data)
+                .code(code)
+                .msg(msg).build();
     }
 
     public static API<Object> e(String msg) {
         return e(400, msg);
     }
 
-    public static API ok() {
-        return ok(204, "success", "success");
-    }
+
 }

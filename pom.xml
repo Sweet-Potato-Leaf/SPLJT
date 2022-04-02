@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
     <groupId>com.longpengz</groupId>
     <artifactId>spljt-parent</artifactId>
-    <version>${spljt.version}</version>
+    <version>0.1.0</version>
     <name>spljt-parent</name>
     <description>Sweet-Potato-Leaf Java Tool</description>
 
