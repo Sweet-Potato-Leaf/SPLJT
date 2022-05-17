@@ -2,6 +2,7 @@ package com.longpengz.dataprocessing.bean.pojo;
 
 import com.github.wenhao.jpa.PredicateBuilder;
 import com.github.wenhao.jpa.Specifications;
+import com.google.gson.Gson;
 import com.longpengz.restful.bean.APIError;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
@@ -9,19 +10,22 @@ import org.springframework.util.StringUtils;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class SpecificationUtil {
 
+    private static final Gson gson = new Gson();
 
     public static <T> PredicateBuilder<T> filter(SeachForm seachForm){
         PredicateBuilder<T> spec = Specifications.and();
         if(!ObjectUtils.isEmpty(seachForm)){
             if(StringUtils.hasLength(seachForm.getTimeStrs())){
                 try {
-                    parseTimesList(seachForm.getTimeStrs()).forEach(item -> {
-                        spec.between(item.getName(),new Timestamp(item.getStart()),new Timestamp(item.getEnd()));
-                    });
+                    parseTimesList(seachForm.getTimeStrs())
+                            .forEach(item -> spec.between(item.getName(),new Timestamp(item.getStart()),new Timestamp(item.getEnd())));
                 }catch (Exception e){
                     APIError.e(400,"时间格式错误！正确格式为：name,start,end;name,start,end");
                 }
@@ -106,7 +110,7 @@ public class SpecificationUtil {
         try {
             t = tClass.getDeclaredConstructor().newInstance();
             if(StringUtils.hasLength(filters)){
-                fieldFilterOfObj(tClass, parseFiltersMap(filters));
+                fieldFilterOfObj(t, parseFiltersMap(filters));
             }
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
@@ -123,15 +127,19 @@ public class SpecificationUtil {
      * @param fieldFilterMap 字段筛选Map
      */
     public static <T> void fieldFilterOfObj(T t, Map<String,FieldFilter> fieldFilterMap) throws IllegalAccessException {
-        for (Field field : t.getClass().getFields()) {
+        for (Field field : t.getClass().getDeclaredFields()) {
+            System.out.println(field.getName());
             FieldFilter fieldFilter = fieldFilterMap.get(field.getName());
-            if(ObjectUtils.isEmpty(fieldFilter)
+            if(!ObjectUtils.isEmpty(fieldFilter)
                     && StringUtils.hasLength(fieldFilter.getName())
                     && fieldFilter.getName().equals(field.getName())){
-                field.set(t, fieldFilter.getContent());
+                field.setAccessible(true);
+                field.set(t, gson.fromJson(fieldFilter.getContent().toString(), field.getType()));
             }
         }
     }
+
+
 
 
 }

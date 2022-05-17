@@ -4,12 +4,13 @@ import com.google.gson.Gson;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
+import java.io.Serializable;
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public abstract class JsonTypeHandlerAbstract<T> extends BaseTypeHandler<T> {
+public abstract class JsonTypeHandlerAbstract<T> extends BaseTypeHandler<T> implements Serializable {
 
     protected static final Gson gson = new Gson();
     protected final Class<T> clazz;
