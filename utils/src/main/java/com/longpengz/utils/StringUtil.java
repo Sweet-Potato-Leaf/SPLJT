@@ -11,4 +11,8 @@ public class StringUtil {
         }
         return idArray;
     }
+
+    public static String[] toStringArray(String ids){
+        return ids.split(",");
+    }
 }

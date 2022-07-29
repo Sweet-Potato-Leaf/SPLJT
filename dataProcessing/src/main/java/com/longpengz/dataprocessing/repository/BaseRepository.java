@@ -10,13 +10,13 @@ import org.springframework.data.repository.query.Param;
 
 
 @NoRepositoryBean()
-public interface BaseRepository<T extends BaseEntity> extends JpaRepository<T, Integer>, JpaSpecificationExecutor<T> {
+public interface BaseRepository<T extends BaseEntity> extends JpaRepository<T, String>, JpaSpecificationExecutor<T> {
 
     @Query("select t from #{#entityName} t where t.id =:id")
     T findItemById(@Param("id") int id);
 
     @Modifying
     @Query("update #{#entityName} t set t.presenceStatus = 0 where t.id in :ids")
-    void softDelete(@Param("ids") Integer[] ids);
+    void softDelete(@Param("ids") String[] ids);
 
 }

@@ -23,11 +23,11 @@ public class BaseEntity implements Serializable {
     @Serial
     private static final long serialVersionUID = 4125096758372084309L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @ApiModelProperty("唯一标识")
-    @Column(updatable = false,columnDefinition = "int(11) comment 'id自增'")
-    private Integer id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    @ApiModelProperty("唯一标识")
+//    @Column(updatable = false,columnDefinition = "int(11) comment 'id自增'")
+//    private Integer id;
 
 
     @CreationTimestamp
