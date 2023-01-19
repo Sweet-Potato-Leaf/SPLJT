@@ -2,14 +2,14 @@ package com.longpengz.dataprocessing.bean.pojo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.persistence.AttributeConverter;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.AttributeConverter;
 import java.io.IOException;
 import java.io.Serializable;
 
-public class JpaConverterJson implements AttributeConverter<Object, String> , Serializable {
+public class JpaConverterJson implements AttributeConverter<Object, String>, Serializable {
 
     private final static ObjectMapper objectMapper = new ObjectMapper();
 

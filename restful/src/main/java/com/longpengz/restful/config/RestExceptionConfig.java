@@ -3,6 +3,7 @@ package com.longpengz.restful.config;
 
 import com.longpengz.restful.bean.API;
 import com.longpengz.restful.bean.APIException;
+import jakarta.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
-import javax.annotation.Resource;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
