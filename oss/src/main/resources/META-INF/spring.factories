@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.longpengz.oss.OssAutoConfiguration
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.splto.oss.OssAutoConfiguration

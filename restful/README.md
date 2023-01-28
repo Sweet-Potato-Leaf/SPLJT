@@ -23,8 +23,8 @@ swagger.enable= true
 ### 3.springboot 项目使用示例
 
 ```java
-import com.longpengz.restful.bean.API;
-import com.longpengz.restful.bean.APIError;
+import bean.com.splto.restful.API;
+import bean.com.splto.restful.APIError;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -52,7 +52,7 @@ public class DemoController {
 public class Demo {
 
     public void test(String type) {
-        if(type.equals("1")){
+        if (type.equals("1")) {
             APIError.e("抛出异常");
         }
     }

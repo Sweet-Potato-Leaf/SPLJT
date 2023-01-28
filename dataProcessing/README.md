@@ -18,11 +18,11 @@
 
 ```java
 
-import com.longpengz.dataprocessing.bean.entity.BaseEntity;
-import com.longpengz.dataprocessing.bean.pojo.PageResult;
-import com.longpengz.dataprocessing.bean.pojo.SeachForm;
-import com.longpengz.dataprocessing.bean.pojo.SpecificationUtil;
-import com.longpengz.dataprocessing.repository.BaseRepository;
+import entity.bean.com.splto.dataprocessing.BaseEntity;
+import pojo.bean.com.splto.dataprocessing.PageResult;
+import pojo.bean.com.splto.dataprocessing.SeachForm;
+import pojo.bean.com.splto.dataprocessing.SpecificationUtil;
+import repository.com.splto.dataprocessing.BaseRepository;
 import org.apache.ibatis.annotations.Mapper;
 import lombok.*;
 import org.apache.ibatis.annotations.SelectProvider;
@@ -94,8 +94,8 @@ public class Demo {
                 .eq("presenceStatus", 1).build(), seachForm.pageRequest());
         return PageResult.jpaOf(users);
     }
-    
-    
+
+
 }
 
 ```

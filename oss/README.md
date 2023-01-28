@@ -34,7 +34,7 @@ com.longpengz.file-storage.minio-config.bucket-name = bucketName
 ### 3.springboot 项目使用示例
 
 ```java
-import com.longpengz.oss.service.FileStorageService;
+import service.com.splto.oss.FileStorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -42,7 +42,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Service
 @RequiredArgsConstructor
 public class Demo {
-    
+
     private final FileStorageService fileStorageService;
 
     public void saveFile(MultipartFile file) {

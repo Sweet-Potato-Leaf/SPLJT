@@ -5,7 +5,7 @@
     <packaging>pom</packaging>
     <groupId>com.longpengz</groupId>
     <artifactId>spljt-parent</artifactId>
-    <version>0.1.0</version>
+    <version>0.2.0</version>
     <name>spljt-parent</name>
     <description>Sweet-Potato-Leaf Java Tool</description>
 
@@ -22,7 +22,7 @@
         <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>17</java.version>
-        <spljt.version>0.1.0</spljt.version>
+        <spljt.version>0.2.0</spljt.version>
         <swagger.version>3.0.0</swagger.version>
         <swagger-ui.version>3.0.3</swagger-ui.version>
         <spring.boot.version>3.0.2</spring.boot.version>
