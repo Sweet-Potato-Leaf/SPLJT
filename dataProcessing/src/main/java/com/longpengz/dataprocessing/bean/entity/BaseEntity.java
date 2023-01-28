@@ -2,10 +2,13 @@ package com.longpengz.dataprocessing.bean.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serial;
@@ -29,6 +32,13 @@ public class BaseEntity implements Serializable {
 //    @ApiModelProperty("唯一标识")
 //    @Column(updatable = false,columnDefinition = "int(11) comment 'id自增'")
 //    private Integer id;
+
+    @Id
+    @GeneratedValue(generator = "system-uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @ApiModelProperty("唯一标识")
+    @Column(updatable = false,columnDefinition = "varchar(64) comment 'uuid'")
+    private String id;
 
 
     @CreationTimestamp
