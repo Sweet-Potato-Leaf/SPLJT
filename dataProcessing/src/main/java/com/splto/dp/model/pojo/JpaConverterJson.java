@@ -1,4 +1,4 @@
-package com.splto.dataprocessing.model.pojo;
+package com.splto.dp.model.pojo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

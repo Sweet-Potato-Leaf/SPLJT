@@ -42,7 +42,10 @@ public class APIError implements Serializable {
         e(403,"没有权限");
     }
     public static void NOT_FOUND(){
-        e(404,"没有找到");
+        NOT_FOUND("");
+    }
+    public static void NOT_FOUND(String msg){
+        e(404,msg + "没有找到");
     }
 
     public static void e(Integer code, String msg){

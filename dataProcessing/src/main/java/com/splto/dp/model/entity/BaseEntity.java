@@ -1,4 +1,4 @@
-package com.splto.dataprocessing.model.entity;
+package com.splto.dp.model.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 import jakarta.persistence.Column;

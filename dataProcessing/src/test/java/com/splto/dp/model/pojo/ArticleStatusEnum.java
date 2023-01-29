@@ -1,4 +1,4 @@
-package com.splto.dataprocessing.model.pojo;
+package com.splto.dp.model.pojo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

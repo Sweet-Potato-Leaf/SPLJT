@@ -1,4 +1,4 @@
-package com.splto.dataprocessing.model.pojo;
+package com.splto.dp.model.pojo;
 
 import com.github.pagehelper.PageHelper;
 import io.swagger.annotations.ApiModel;
@@ -18,7 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ApiModel(description = "查询基础参数")
-public class SeachForm {
+public class SearchForm {
 
     @ApiModelProperty(value = "当前页（0开始）")
     private int pageNum = 0;

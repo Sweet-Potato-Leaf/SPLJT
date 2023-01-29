@@ -1,4 +1,4 @@
-package com.splto.dataprocessing.model.pojo;
+package com.splto.dp.model.pojo;
 
 import com.github.wenhao.jpa.PredicateBuilder;
 import com.github.wenhao.jpa.Specifications;
@@ -19,20 +19,20 @@ public class SpecificationUtil {
 
     private static final Gson gson = new Gson();
 
-    public static <T> PredicateBuilder<T> filter(SeachForm seachForm){
+    public static <T> PredicateBuilder<T> filter(SearchForm searchForm){
         PredicateBuilder<T> spec = Specifications.and();
-        if(!ObjectUtils.isEmpty(seachForm)){
-            if(StringUtils.hasLength(seachForm.getTimeStrs())){
+        if(!ObjectUtils.isEmpty(searchForm)){
+            if(StringUtils.hasLength(searchForm.getTimeStrs())){
                 try {
-                    parseTimesList(seachForm.getTimeStrs())
+                    parseTimesList(searchForm.getTimeStrs())
                             .forEach(item -> spec.between(item.getName(),new Timestamp(item.getStart()),new Timestamp(item.getEnd())));
                 }catch (Exception e){
                     APIError.e(400,"时间格式错误！正确格式为：name,start,end;name,start,end");
                 }
             }
-            if(StringUtils.hasLength(seachForm.getFieldStrs())){
+            if(StringUtils.hasLength(searchForm.getFieldStrs())){
                 try {
-                    parseFiltersList(seachForm.getFieldStrs()).forEach(item->{
+                    parseFiltersList(searchForm.getFieldStrs()).forEach(item->{
                         if(!item.isBlurry()){
                             spec.eq(item.getName(),item.getContent());
                         }else {

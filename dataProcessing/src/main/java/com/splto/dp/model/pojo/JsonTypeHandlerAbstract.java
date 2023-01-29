@@ -1,4 +1,4 @@
-package com.splto.dataprocessing.model.pojo;
+package com.splto.dp.model.pojo;
 
 import com.google.gson.Gson;
 import org.apache.ibatis.type.BaseTypeHandler;

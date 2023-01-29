@@ -1,4 +1,4 @@
-package com.splto.dataprocessing.model.pojo;
+package com.splto.dp.model.pojo;
 
 import com.github.pagehelper.Page;
 import io.swagger.annotations.ApiModel;

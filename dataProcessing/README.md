@@ -18,11 +18,11 @@
 
 ```java
 
-import entity.bean.com.splto.dataprocessing.BaseEntity;
-import pojo.bean.com.splto.dataprocessing.PageResult;
-import pojo.bean.com.splto.dataprocessing.SeachForm;
-import pojo.bean.com.splto.dataprocessing.SpecificationUtil;
-import repository.com.splto.dataprocessing.BaseRepository;
+import entity.bean.com.splto.dp.BaseEntity;
+import pojo.bean.com.splto.dp.PageResult;
+import pojo.bean.com.splto.dp.SeachForm;
+import pojo.bean.com.splto.dp.SpecificationUtil;
+import repository.com.splto.dp.BaseRepository;
 import org.apache.ibatis.annotations.Mapper;
 import lombok.*;
 import org.apache.ibatis.annotations.SelectProvider;

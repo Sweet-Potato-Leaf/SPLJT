@@ -1,6 +1,6 @@
-package com.splto.dataprocessing.repository;
+package com.splto.dp.repository;
 
-import com.splto.dataprocessing.model.entity.BaseEntity;
+import com.splto.dp.model.entity.BaseEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
