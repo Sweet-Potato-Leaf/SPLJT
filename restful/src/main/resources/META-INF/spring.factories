@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfiguration.EnableAutoconfiguration=com.longpengz.rest.RestfulAutoConfiguration
+org.springframework.boot.autoconfiguration.EnableAutoconfiguration=com.splto.rest.RestfulAutoConfiguration
