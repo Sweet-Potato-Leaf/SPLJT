@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @AllArgsConstructor
 @NoArgsConstructor
 @Configuration
-@ConfigurationProperties(prefix = "com.longpengz.file-storage")
+@ConfigurationProperties(prefix = "com.splto.file-storage")
 @ApiModel(description = "文件存储仓库配置")
 public class FileStorageConfig {
 

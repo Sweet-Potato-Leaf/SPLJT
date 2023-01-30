@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Data
 @Configuration
-@ConfigurationProperties(prefix = "com.longpengz.cache")
+@ConfigurationProperties(prefix = "com.splto.cache")
 public class CacheConfig {
 
     @ApiModelProperty("缓存类型 redis")
