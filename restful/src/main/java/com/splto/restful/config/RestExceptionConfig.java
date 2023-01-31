@@ -3,7 +3,7 @@ package com.splto.restful.config;
 
 import com.splto.restful.model.API;
 import com.splto.restful.model.APIException;
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;

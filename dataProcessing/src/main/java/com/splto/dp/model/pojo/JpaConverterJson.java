@@ -2,7 +2,7 @@ package com.splto.dp.model.pojo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jakarta.persistence.AttributeConverter;
+import javax.persistence.AttributeConverter;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
