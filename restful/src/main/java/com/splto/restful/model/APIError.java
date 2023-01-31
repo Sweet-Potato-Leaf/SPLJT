@@ -10,9 +10,6 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
-/**
- * @author longpengZ
- */
 @Data
 @Builder
 @AllArgsConstructor
