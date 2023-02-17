@@ -1,5 +1,7 @@
-package com.splto.cache.service;
+package com.splto.cache.service.impl;
 
+import com.splto.cache.model.pojo.CachePrefixKey;
+import com.splto.cache.service.CacheInterface;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -45,6 +47,11 @@ public class RedisCacheInterfaceImpl implements CacheInterface {
     @Override
     public void saveObject(String key, Object object) {
         saveObject(key,object,null,null);
+    }
+
+    @Override
+    public void saveObject(CachePrefixKey key, Object object) {
+        saveObject(key.getKey(), object, key.getTimeout(), key.getTimeUnit());
     }
 
     @Override

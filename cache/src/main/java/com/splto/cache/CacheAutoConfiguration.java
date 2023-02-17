@@ -2,7 +2,7 @@ package com.splto.cache;
 
 import com.splto.cache.config.CacheConfig;
 import com.splto.cache.service.CacheService;
-import com.splto.cache.service.RedisCacheInterfaceImpl;
+import com.splto.cache.service.impl.RedisCacheInterfaceImpl;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -19,7 +19,7 @@ public class CacheAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnProperty(name = "com.longpengz.cache.type",havingValue = "redis")
+    @ConditionalOnProperty(name = "com.splto.cache.type",havingValue = "redis")
     RedisCacheInterfaceImpl redisCacheInterfaceImpl(){
         return new RedisCacheInterfaceImpl();
     }

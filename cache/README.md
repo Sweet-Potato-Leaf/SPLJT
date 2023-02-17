@@ -8,7 +8,7 @@
 ### 1.maven依赖
 ```xml
 <dependency>
-    <groupId>com.longpengz</groupId>
+    <groupId>com.splto</groupId>
     <artifactId>cache</artifactId>
     <version>${spljt.version}</version>
 </dependency>
@@ -18,7 +18,7 @@
 ```properties
 # redis
 # spring redis 默认配置都继承
-com.longpengz.cache.type=redis
+com.splto.cache.type=redis
 ```
 
 ### 3.springboot 项目中使用示例

@@ -1,5 +1,7 @@
 package com.splto.cache.service;
 
+import com.splto.cache.model.pojo.CachePrefixKey;
+import com.splto.cache.service.impl.RedisCacheInterfaceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,11 @@ public class CacheService implements CacheInterface {
     @Override
     public void saveObject(String key, Object object) {
         cacheInterface().saveObject(key,object);
+    }
+
+    @Override
+    public void saveObject(CachePrefixKey key, Object object) {
+        cacheInterface().saveObject(key, object);
     }
 
     @Override

@@ -1,5 +1,7 @@
 package com.splto.cache.service;
 
+import com.splto.cache.model.pojo.CachePrefixKey;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -7,6 +9,21 @@ import java.util.concurrent.TimeUnit;
  * @author longpengZ
  */
 public interface CacheInterface {
+
+    /**
+     * 缓存对象，无过期时间
+     * @author longpengZ
+     * @param key key值
+     * @param object 缓存对象
+     */
+    void saveObject(String key, Object object);
+
+    /**
+     * 缓存对象
+     * @param key @see CachePrefixKey
+     * @param object 缓存对象
+     */
+    void saveObject(CachePrefixKey key, Object object);
 
     /**
      * 缓存对象，有过期时间
@@ -17,14 +34,6 @@ public interface CacheInterface {
      * @param timeUnit 时间类型 时分秒
      */
     void saveObject(String key, Object object, Integer timeout, TimeUnit timeUnit);
-
-    /**
-     * 缓存对象，无过期时间
-     * @author longpengZ
-     * @param key key值
-     * @param object 缓存对象
-     */
-    void saveObject(String key, Object object);
 
     /**
      * 根据key值返回缓存对象
