@@ -13,6 +13,8 @@ import java.io.IOException;
  */
 public class LocalStorageService implements StorageInterface {
 
+    private final String STORAGE_NAME = "storage";
+
     private final LocalConfig localConfig;
 
     public LocalStorageService(LocalConfig localConfig) {
@@ -24,6 +26,7 @@ public class LocalStorageService implements StorageInterface {
         String filePath = generateFilePath()
                 + generateFileName(multipartFile.getOriginalFilename());
         String path = localConfig.getUploadPath()
+                + File.separator + STORAGE_NAME
                 + File.separator + filePath;
         File file = new File(path);
         if(!file.exists()){
@@ -36,7 +39,7 @@ public class LocalStorageService implements StorageInterface {
             APIError.e("文件上传失败");
         }
         filePath = filePath.replace("\\", "/");
-        return localConfig.getAddress() + "/" + filePath;
+        return localConfig.getAddress() + "/" + STORAGE_NAME + "/" + filePath;
     }
 
 }
