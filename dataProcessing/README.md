@@ -8,7 +8,7 @@
 ### 1.maven依赖
 ```xml
 <dependency>
-    <groupId>com.longpengz</groupId>
+    <groupId>com.splto</groupId>
     <artifactId>dataProcessing</artifactId>
     <version>${spljt.version}</version>
 </dependency>

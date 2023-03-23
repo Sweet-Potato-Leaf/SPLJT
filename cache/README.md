@@ -50,7 +50,7 @@ public class Demo3 {
         // 通过cacheService 调用封装方法 
         cacheService.saveObject("key", "object", 1, 1);
         
-        // 更多封装方法详情看com.longpengz.cache.service.CacheInterface 信息
+        // 更多封装方法详情看com.splto.cache.service.CacheInterface 信息
     }
 }
 
