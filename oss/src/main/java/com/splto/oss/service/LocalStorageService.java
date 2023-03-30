@@ -26,7 +26,6 @@ public class LocalStorageService implements StorageInterface {
         String filePath = generateFilePath()
                 + generateFileName(multipartFile.getOriginalFilename());
         String path = localConfig.getUploadPath()
-                + File.separator + STORAGE_NAME
                 + File.separator + filePath;
         File file = new File(path);
         if(!file.exists()){
