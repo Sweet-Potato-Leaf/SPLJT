@@ -2,8 +2,8 @@ package com.splto.dp.model.pojo;
 
 import com.github.wenhao.jpa.PredicateBuilder;
 import com.github.wenhao.jpa.Specifications;
-import com.google.gson.Gson;
 import com.splto.restful.model.APIError;
+import com.splto.utils.JsonUtil;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.Map;
 
 public class SpecificationUtil {
-
-    private static final Gson gson = new Gson();
 
     public static <T> PredicateBuilder<T> filter(SearchForm searchForm){
         PredicateBuilder<T> spec = Specifications.and();
@@ -134,7 +132,7 @@ public class SpecificationUtil {
                     && StringUtils.hasLength(fieldFilter.getName())
                     && fieldFilter.getName().equals(field.getName())){
                 field.setAccessible(true);
-                field.set(t, gson.fromJson(fieldFilter.getContent().toString(), field.getType()));
+                field.set(t, JsonUtil.fromJson(fieldFilter.getContent().toString(), field.getType()));
             }
         }
     }
