@@ -4,6 +4,8 @@ package com.splto.restful.config;
 import com.splto.restful.model.API;
 import com.splto.restful.model.APIException;
 import javax.annotation.Resource;
+
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -22,9 +24,9 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 
 
+@Slf4j
 public class RestExceptionConfig {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RestExceptionConfig.class);
 
     @Resource
     private ApplicationContext mContext;
@@ -33,6 +35,7 @@ public class RestExceptionConfig {
     public API<Object> illegalParamsExceptionHandler(MethodArgumentNotValidException ex) {
         BindingResult bindingResult = ex.getBindingResult();
         FieldError fieldError = bindingResult.getFieldError();
+        log.error(ex.getMessage());
         return API.e(400, !ObjectUtils.isEmpty(fieldError)? fieldError.getDefaultMessage():"");
 
     }
@@ -40,12 +43,13 @@ public class RestExceptionConfig {
     @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
     public API<Object> methodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
         String error = String.format("The parameter '%s' should be of type '%s'", ex.getName(), !ObjectUtils.isEmpty(ex.getRequiredType())? ex.getRequiredType().getSimpleName():"");
+        log.error(ex.getMessage());
         return API.e(400, error);
     }
 
     @ExceptionHandler(value = {NoHandlerFoundException.class})
     public API<Object> noHandlerFoundException(Exception ex) {
-        LOGGER.debug(ex.getMessage());
+        log.error(ex.getMessage());
         return API.e(404, "Resource Not Found");
     }
 
@@ -55,18 +59,19 @@ public class RestExceptionConfig {
         builder.append(ex.getContentType());
         builder.append(" media type is not supported. Supported media types are ");
         ex.getSupportedMediaTypes().forEach(t -> builder.append(t).append(","));
+        log.error(ex.getMessage());
         return API.e(415, builder.toString());
     }
 
     @ExceptionHandler(value = {HttpRequestMethodNotSupportedException.class})
     public API<Object> httpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException ex) {
-        LOGGER.error("Error code 405: {}", ex.getMessage());
+        log.error(ex.getMessage());
         return API.e(405, ex.getMessage());
     }
 
     @ExceptionHandler(value = {APIException.class})
     public API<Object> APIException(APIException ex) {
-        LOGGER.info(ex.getMessage());
+        log.error(ex.getMessage());
         return API.e(ex.getApiError().getCode(), ex.getApiError().getMsg());
     }
 
