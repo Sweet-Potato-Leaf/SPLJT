@@ -1,7 +1,6 @@
 package com.splto.dp.model.pojo;
 
 import com.google.gson.reflect.TypeToken;
-import com.splto.utils.JsonUtil;
 
 import java.lang.reflect.Type;
 

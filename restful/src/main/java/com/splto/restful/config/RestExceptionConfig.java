@@ -3,14 +3,9 @@ package com.splto.restful.config;
 
 import com.splto.restful.model.API;
 import com.splto.restful.model.APIException;
-import javax.annotation.Resource;
-
 import com.splto.utils.ExceptionUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.core.NestedExceptionUtils;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
@@ -22,9 +17,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import javax.annotation.Resource;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.Arrays;
 
 
 @Slf4j
