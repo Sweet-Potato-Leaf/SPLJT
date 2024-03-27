@@ -36,7 +36,7 @@ public class LocalStorageService implements StorageInterface {
             APIError.e("文件上传失败");
         }
         filePath = filePath.replace("\\", "/");
-        return localConfig.getAddress() + "/" + "/" + filePath;
+        return localConfig.getAddress() + "/" + filePath;
     }
 
 }
