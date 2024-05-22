@@ -1,32 +1,29 @@
 package com.splto.restful.model;
 
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.slf4j.MDC;
 
-/**
- * @author longpengZ
- */
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class API<T> {
 
-    @ApiModelProperty("状态码")
+    @Schema(title = "状态码")
     private Integer code;
     
-    @ApiModelProperty("数据")
+    @Schema(title = "数据")
     private T data;
     
-    @ApiModelProperty("信息补充说明")
+    @Schema(title = "信息补充说明")
     private String msg;
     
-    @ApiModelProperty("日志追踪id")
+    @Schema(title = "日志追踪id")
     private String traceId;
 
     public static <T> API<T> ok(T data) {

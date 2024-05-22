@@ -1,6 +1,6 @@
 package com.splto.cache.config;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "com.splto.cache")
 public class CacheConfig {
 
-    @ApiModelProperty("缓存类型 redis")
+    @Schema(title = "缓存类型 redis")
     private String type;
 
 }

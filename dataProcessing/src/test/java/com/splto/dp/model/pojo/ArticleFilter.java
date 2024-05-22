@@ -1,7 +1,7 @@
 package com.splto.dp.model.pojo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,28 +13,28 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(description = "文章筛选参数")
+@Tag(name = "文章筛选参数")
 public class ArticleFilter {
 
-    @ApiModelProperty(value = "文章id")
+    @Schema(title = "文章id")
     private Integer articleId;
 
-    @ApiModelProperty(value = "用户id")
+    @Schema(title = "用户id")
     private Integer userId;
 
-    @ApiModelProperty(value = "热门排序")
+    @Schema(title = "热门排序")
     private Boolean isHot;
 
-    @ApiModelProperty(value = "最新排序")
+    @Schema(title = "最新排序")
     private Boolean isNew;
     
-    @ApiModelProperty(value = "综合搜索")
+    @Schema(title = "综合搜索")
     private String comprehensiveContent;
 
-    @ApiModelProperty(value = "状态")
+    @Schema(title = "状态")
     private ArticleStatusEnum status;
 
-    @ApiModelProperty(value = "文章ids列表")
+    @Schema(title = "文章ids列表")
     private List<Integer> articleIds;
 
 }

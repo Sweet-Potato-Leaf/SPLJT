@@ -1,7 +1,11 @@
 package com.splto.oss.config;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,10 +15,10 @@ import org.springframework.context.annotation.Configuration;
 @NoArgsConstructor
 @Configuration
 @ConfigurationProperties(prefix = "com.splto.file-storage")
-@ApiModel(description = "文件存储仓库配置")
+@Tag(name = "文件存储仓库配置")
 public class FileStorageConfig {
 
-    @ApiModelProperty(value = "类型")
+    @Schema(title = "类型")
     private String type;
 
     private LocalConfig localConfig;

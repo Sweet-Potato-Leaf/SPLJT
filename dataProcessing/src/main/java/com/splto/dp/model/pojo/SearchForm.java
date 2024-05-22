@@ -1,8 +1,7 @@
 package com.splto.dp.model.pojo;
 
-import com.github.pagehelper.PageHelper;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,32 +16,30 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(description = "查询基础参数")
+@Tag(name = "查询基础参数")
 public class SearchForm {
 
-    @ApiModelProperty(value = "当前页（0开始）")
+    @Builder.Default
+    @Schema(title = "当前页（0开始）")
     private int pageNum = 0;
 
-    @ApiModelProperty(value = "每页大小")
+    @Builder.Default
+    @Schema(title = "每页大小")
     private int pageSize = 20;
 
-    @ApiModelProperty(value = "时间筛选条件字符串格式name,start,end;")
+    @Schema(title = "时间筛选条件字符串格式name,start,end;")
     private String timeStrs;
 
-    @ApiModelProperty(value = "其他筛选条件字符串格式name,content,blurry;")
+    @Schema(title = "其他筛选条件字符串格式name,content,blurry;")
     private String fieldStrs;
 
-    @ApiModelProperty(value = "时间筛选条件")
+    @Schema(title = "时间筛选条件")
     private List<TimeFilter> timeFilters = new ArrayList<>();
 
-    @ApiModelProperty(value = "其他筛选条件")
+    @Schema(title = "其他筛选条件")
     private List<FieldFilter> fieldFilers = new ArrayList<>();
 
     public PageRequest  pageRequest(){
         return PageRequest.of(pageNum , pageSize, Sort.by(Sort.Direction.DESC,"createTime"));
-    }
-
-    public void pageHelperStartPage(){
-        PageHelper.startPage(pageNum + 1,pageSize);
     }
 }

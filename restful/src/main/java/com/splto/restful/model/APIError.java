@@ -1,8 +1,8 @@
 package com.splto.restful.model;
 
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,13 +14,13 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(description = "API错误信息")
+@Tag(name = "API错误信息")
 public class APIError implements Serializable {
 
-    @ApiModelProperty("信息补充说明")
+    @Schema(title = "信息补充说明")
     private String msg;
 
-    @ApiModelProperty("状态码")
+    @Schema(title = "状态码")
     private Integer code;
 
     public static void e(String msg){

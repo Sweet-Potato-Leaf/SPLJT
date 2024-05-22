@@ -16,13 +16,18 @@
     <name>spljt-pom</name>
 
     <properties>
-        <alibaba.cloud.version>2023.0.0.0</alibaba.cloud.version>
+        <alibaba.cloud.version>2023.0.1.0</alibaba.cloud.version>
         <alibaba.nacos.client.version>2.3.0</alibaba.nacos.client.version>
         <dubbo.version>3.2.11</dubbo.version>
         <spring.cloud.version>3.1.1</spring.cloud.version>
         <dynamic.version>4.3.0</dynamic.version>
         <java.version>21</java.version>
         <spring.boot.version>3.2.4</spring.boot.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spljt.version>1.0.0</spljt.version>
+        <knife4j.version>4.5.0</knife4j.version>
+        <minio.version>8.3.8</minio.version>
+        <mybatis.plus.version>3.5.6</mybatis.plus.version>
     </properties>
 
     <dependencyManagement>
@@ -30,30 +35,76 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-                <version>2023.0.0.0</version>
+                <version>${alibaba.cloud.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-bootstrap</artifactId>
-                <version>3.1.1</version>
+                <version>${spring.cloud.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.nacos</groupId>
                 <artifactId>nacos-client</artifactId>
-                <version>2.3.0</version>
+                <version>${alibaba.nacos.client.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.apache.dubbo</groupId>
                 <artifactId>dubbo</artifactId>
-                <version>3.2.11</version>
+                <version>${dubbo.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.baomidou</groupId>
                 <artifactId>dynamic-datasource-spring-boot3-starter</artifactId>
                 <version>${dynamic.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.splto</groupId>
+                <artifactId>spljt-common</artifactId>
+                <version>${spljt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.splto</groupId>
+                <artifactId>restful</artifactId>
+                <version>${spljt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>@</delimiter>
+                    </delimiters>
+                    <useDefaultDelimiters>false</useDefaultDelimiters>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

@@ -1,7 +1,7 @@
 package com.splto.dp.model.pojo;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,16 +11,16 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(description = "搜索筛选参数")
+@Tag(name = "搜索筛选参数")
 public class FieldFilter {
     
-    @ApiModelProperty(value = "字段")
+    @Schema(title = "字段")
     private String name;
     
-    @ApiModelProperty(value = "查询内容")
+    @Schema(title = "查询内容")
     private Object content;
 
-    @ApiModelProperty(value = "是否模糊查询")
+    @Schema(title = "是否模糊查询")
     private boolean blurry;
 
 }
