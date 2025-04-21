@@ -7,10 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -35,7 +32,7 @@ public class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "com.splto.dp.model.pojo.CustomUUIDHexGenerator")
     @ApiModelProperty("唯一标识")
     @Column(updatable = false,columnDefinition = "varchar(64) comment 'uuid'")
     private String id;

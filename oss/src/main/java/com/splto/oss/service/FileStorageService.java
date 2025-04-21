@@ -31,5 +31,13 @@ public class FileStorageService {
         return storageInterface.saveFile(multipartFile);
     }
 
+    /**
+     * 保存文件
+     * @author longpengZ
+     */
+    public String saveFile(byte[] bytes, String fileName){
+        return storageInterface.saveFile(bytes, fileName);
+    }
+
 
 }
