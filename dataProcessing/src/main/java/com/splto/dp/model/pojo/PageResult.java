@@ -26,6 +26,7 @@ public class PageResult<T> {
 
     /**
      * mybatis 转换
+     * @author longpengZ
      */
     public static <T> PageResult<T> of(List<T> content){
         PageResult<T> pageResult = new PageResult<>();
@@ -44,6 +45,7 @@ public class PageResult<T> {
 
     /**
      * jpa 转换
+     * @author longpengZ
      */
     public static <T> PageResult<T> of(org.springframework.data.domain.Page<T> jpaPage) {
         PageResult<T> pageResult = new PageResult<>();

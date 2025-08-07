@@ -5,37 +5,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.AttributeConverter;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
-import java.io.Serializable;
+import java.lang.reflect.Type;
 
-public class JpaConverterJson implements AttributeConverter<Object, String>, Serializable {
+public class JpaConverterJson<T> extends JpaConverterAbstract<T> {
 
-    private final static ObjectMapper objectMapper = new ObjectMapper();
-
-    @Override
-    public String convertToDatabaseColumn(Object meta) {
-        if(ObjectUtils.isEmpty(meta)){
-            return null;
-        }
-        try {
-            return objectMapper.writeValueAsString(meta);
-        } catch (JsonProcessingException ex) {
-            ex.printStackTrace();
-            return null;
-        }
-    }
 
     @Override
-    public Object convertToEntityAttribute(String dbData) {
-        if(!StringUtils.hasLength(dbData)){
-            return null;
-        }
-        try {
-            return objectMapper.readValue(dbData, Object.class);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            return null;
-        }
+    public Type getType() {
+        return new TypeToken<T>(){}.getType();
     }
 }

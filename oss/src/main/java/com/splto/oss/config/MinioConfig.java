@@ -20,7 +20,6 @@ public class MinioConfig {
     @Schema(title = "URL，内网地址，方便上传")
     private String localEndpoint;
 
-    @Builder.Default
     @Schema(title = "是否初始化")
     private boolean initialization=false;
 

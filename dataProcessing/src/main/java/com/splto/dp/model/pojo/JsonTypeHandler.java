@@ -1,5 +1,6 @@
 package com.splto.dp.model.pojo;
 
+import com.splto.utils.JsonUtil;
 import org.springframework.util.StringUtils;
 
 public class JsonTypeHandler<T> extends JsonTypeHandlerAbstract<T>{
@@ -10,11 +11,7 @@ public class JsonTypeHandler<T> extends JsonTypeHandlerAbstract<T>{
 
     @Override
     public T toObject(String content, Class<T> clazz) {
-        if(StringUtils.hasLength(content)){
-            return  gson.fromJson(content, clazz);
-        }else {
-            return null;
-        }
+        return StringUtils.hasLength(content) ? JsonUtil.fromJson(content, clazz) : null;
     }
 
 }

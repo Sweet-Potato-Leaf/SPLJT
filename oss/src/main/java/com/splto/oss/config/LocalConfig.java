@@ -6,11 +6,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Tag(name = "本地上传配置")
+@Configuration
+@ConfigurationProperties(prefix = "com.splto.file-storage.local-config")
 @Tag(name = "本地上传配置")
 public class LocalConfig {
 

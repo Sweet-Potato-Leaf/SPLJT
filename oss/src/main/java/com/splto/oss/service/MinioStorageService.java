@@ -5,8 +5,10 @@ import com.splto.restful.model.APIError;
 import io.minio.MinioClient;
 import io.minio.PutObjectArgs;
 import io.minio.errors.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -14,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * Minio上传文件
  */
+@Slf4j
 public class MinioStorageService implements StorageInterface {
 
     private final MinioConfig minioConfig;
@@ -40,7 +43,22 @@ public class MinioStorageService implements StorageInterface {
                     .object(filePath)
                     .stream(multipartFile.getInputStream(), multipartFile.getSize(), -1).build());
         } catch (ServerException | InsufficientDataException | ErrorResponseException | IOException | NoSuchAlgorithmException | InvalidKeyException | InvalidResponseException | XmlParserException | InternalException e) {
-            e.printStackTrace();
+            log.error("文件上传失败:", e);
+            APIError.e("文件上传失败");
+        }
+        return minioConfig.getEndpoint() + "/" + filePath;
+    }
+
+    @Override
+    public String saveFile(byte[] bytes, String fileName) {
+        String filePath = generateFilePath() + generateFileName(fileName);
+        try {
+            minioClient.putObject(PutObjectArgs.builder()
+                    .bucket(minioConfig.getBucketName())
+                    .object(filePath)
+                    .stream(new ByteArrayInputStream(bytes), bytes.length, -1).build());
+        } catch (ServerException | InsufficientDataException | ErrorResponseException | IOException | NoSuchAlgorithmException | InvalidKeyException | InvalidResponseException | XmlParserException | InternalException e) {
+            log.error("文件上传失败:", e);
             APIError.e("文件上传失败");
         }
         return minioConfig.getEndpoint() + "/" + filePath;

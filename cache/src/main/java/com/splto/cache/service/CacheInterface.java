@@ -23,7 +23,9 @@ public interface CacheInterface {
      * @param key @see CachePrefixKey
      * @param object 缓存对象
      */
-    void saveObject(CachePrefixKey key, Object object);
+    default void saveObject(CachePrefixKey key, Object object) {
+        saveObject(key.getKey(), object, key.getTimeout(), key.getTimeUnit());
+    }
 
     /**
      * 缓存对象，有过期时间
@@ -34,6 +36,16 @@ public interface CacheInterface {
      * @param timeUnit 时间类型 时分秒
      */
     void saveObject(String key, Object object, Integer timeout, TimeUnit timeUnit);
+
+    /**
+     * 根据key值返回缓存对象
+     * @author longpengZ
+     * @param key key值
+     * @param <T> 缓存对象泛型
+     */
+    default <T> T getObject(CachePrefixKey key) {
+        return getObject(key.getKey());
+    }
 
     /**
      * 根据key值返回缓存对象

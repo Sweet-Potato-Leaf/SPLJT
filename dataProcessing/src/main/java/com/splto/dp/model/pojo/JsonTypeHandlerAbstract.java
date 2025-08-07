@@ -1,6 +1,6 @@
 package com.splto.dp.model.pojo;
 
-import com.google.gson.Gson;
+import com.splto.utils.JsonUtil;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
 
@@ -12,7 +12,6 @@ import java.sql.SQLException;
 
 public abstract class JsonTypeHandlerAbstract<T> extends BaseTypeHandler<T> implements Serializable {
 
-    protected static final Gson gson = new Gson();
     protected final Class<T> clazz;
 
     public JsonTypeHandlerAbstract(Class<T> clazz) {
@@ -46,7 +45,7 @@ public abstract class JsonTypeHandlerAbstract<T> extends BaseTypeHandler<T> impl
 
     private String toJson(T object) {
         try {
-            return gson.toJson(object);
+            return JsonUtil.toJson(object);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

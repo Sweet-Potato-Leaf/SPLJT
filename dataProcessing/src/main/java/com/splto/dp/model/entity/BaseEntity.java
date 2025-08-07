@@ -35,7 +35,7 @@ public class BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
+    @GenericGenerator(name = "system-uuid", strategy = "com.splto.dp.model.pojo.CustomUUIDHexGenerator")
     @Schema(title = "唯一标识")
     @Column(updatable = false,columnDefinition = "varchar(64) comment 'uuid'")
     private String id;

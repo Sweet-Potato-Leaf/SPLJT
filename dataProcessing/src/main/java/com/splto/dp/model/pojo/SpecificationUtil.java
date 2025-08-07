@@ -2,24 +2,20 @@ package com.splto.dp.model.pojo;
 
 import com.github.wenhao.jpa.PredicateBuilder;
 import com.github.wenhao.jpa.Specifications;
-import com.google.gson.Gson;
 import com.splto.restful.model.APIError;
+import com.splto.utils.JsonUtil;
+import com.splto.utils.ReflectionUtil;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SpecificationUtil {
 
-    private static final Gson gson = new Gson();
-
-    public static <T> PredicateBuilder<T> filter(SearchForm searchForm){
+    public static <T> PredicateBuilder<T> filter(SearchForm searchForm, Class<T> clz) {
         PredicateBuilder<T> spec = Specifications.and();
         if(!ObjectUtils.isEmpty(searchForm)){
             if(StringUtils.hasLength(searchForm.getTimeStrs())){
@@ -32,11 +28,14 @@ public class SpecificationUtil {
             }
             if(StringUtils.hasLength(searchForm.getFieldStrs())){
                 try {
+                    Map<String, Field> fieldMap = new HashMap<>();
+                    Optional.ofNullable(clz).ifPresent(it -> fieldMap.putAll(ReflectionUtil.getObjFieldMap(it)));
                     parseFiltersList(searchForm.getFieldStrs()).forEach(item->{
+                        Object content = ObjectUtils.isEmpty(fieldMap.get(item.getName())) ? item.getContent():JsonUtil.fromJson(item.getContent().toString(), fieldMap.get(item.getName()).getType());
                         if(!item.isBlurry()){
-                            spec.eq(item.getName(),item.getContent());
+                            spec.eq(item.getName(), content);
                         }else {
-                            spec.like(item.getName(),"%"+item.getContent()+"%");
+                            spec.like(item.getName(),"%"+content+"%");
                         }
                     });
                 }catch (Exception e){
@@ -45,6 +44,11 @@ public class SpecificationUtil {
             }
         }
         return spec;
+
+    }
+
+    public static <T> PredicateBuilder<T> filter(SearchForm searchForm){
+        return filter(searchForm, null);
     }
 
     public static <T> PredicateBuilder<T>  exist(PredicateBuilder<T> spec){
@@ -88,14 +92,14 @@ public class SpecificationUtil {
     public static Map<String,FieldFilter> parseFiltersMap(String filters){
         String[] filterArr = filters.split(";");
         return new HashMap<>(){{
-            for(String time:filterArr){
-                FieldFilter fieldFilter = parseFieldFilterItem(time);
+            for(String item:filterArr){
+                FieldFilter fieldFilter = parseFieldFilterItem(item);
                 put(fieldFilter.getName(), fieldFilter);
             }
         }};
     }
-    public static FieldFilter parseFieldFilterItem(String time){
-        String[] split = time.split(",");
+    public static FieldFilter parseFieldFilterItem(String str){
+        String[] split = str.split(",");
         return FieldFilter.builder().name(split[0]).content(split[1]).blurry("true".equals(split[2])).build();
     }
 
@@ -134,7 +138,7 @@ public class SpecificationUtil {
                     && StringUtils.hasLength(fieldFilter.getName())
                     && fieldFilter.getName().equals(field.getName())){
                 field.setAccessible(true);
-                field.set(t, gson.fromJson(fieldFilter.getContent().toString(), field.getType()));
+                field.set(t, JsonUtil.fromJson(fieldFilter.getContent().toString(), field.getType()));
             }
         }
     }

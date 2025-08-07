@@ -19,6 +19,14 @@ public interface StorageInterface {
     String saveFile(MultipartFile multipartFile);
 
     /**
+     * 保存文件
+     * @author longpengZ
+     * @param bytes 上传文件
+     * @param fileName 文件名称
+     */
+    String saveFile(byte[] bytes, String fileName);
+
+    /**
      * 生成文件名称
      * @author longpengZ
      * @param oldName 文件旧名称

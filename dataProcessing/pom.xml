@@ -14,7 +14,8 @@
     <description>jpa tool and mybatis tool</description>
 
     <properties>
-        <jpa-spec.version>3.2.4</jpa-spec.version>
+<!--        <jpa-spec.version>3.2.4</jpa-spec.version>-->
+        <jpa-spec.version>4.0.0</jpa-spec.version>
     </properties>
 
 
